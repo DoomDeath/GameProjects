@@ -39,3 +39,8 @@ func _physics_process(delta):
 func add_coin():
 	var canvasLayer = get_tree().get_root().find_node("CanvasLayer", true, false)
 	canvasLayer._handleCoinCollected()  # Llama a la función _handleCoinCollected() en el nodo CanvasLayer cuando se recoge una moneda.
+
+
+func _on_Spikes_body_entered(body):
+	if body.get_name() == "Player":
+		get_tree().reload_current_scene()

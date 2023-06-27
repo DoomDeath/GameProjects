@@ -8,7 +8,7 @@ func _ready():
 
 
 func _on_StarGame_pressed():
-	get_tree().change_scene("res://Scenes/Mundo.tscn") # Replace with function body.
+	get_tree().change_scene("res://Scenes/Mundo1.tscn") # Replace with function body.
 
 
 func _on_QuitButton_pressed():
