@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Rocky Roads/Tilesets/tileset_forest.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -7,13 +7,13 @@
 [ext_resource path="res://Rocky Roads/Deco/clouds.png" type="Texture" id=5]
 [ext_resource path="res://Rocky Roads/Deco/sun.png" type="Texture" id=6]
 [ext_resource path="res://Rocky Roads/Backgrounds/mountains_b.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/Saw.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Rocky Roads/Objects/coin_small_gold.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/Coin.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Rocky Roads/Objects/coin_gold.png" type="Texture" id=11]
 [ext_resource path="res://Scripts/UI.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/DeadZone.gd" type="Script" id=13]
 [ext_resource path="res://Rocky Roads/Deco/rock.png" type="Texture" id=14]
-
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -750,6 +750,7 @@ corner_radius_bottom_left = 8
 extents = Vector2( 242, 10 )
 
 [node name="Mundo" type="Node2D"]
+position = Vector2( -110, -201 )
 
 [node name="Sky" type="Sprite" parent="."]
 position = Vector2( 120, -32.5 )
@@ -779,13 +780,14 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( -131068, 29, 0, -131059, 31, 0, -65536, 29, 0, -65535, 10, 0, -65534, 10, 0, -65528, 29, 0, 6, 10, 0, 7, 10, 0, 65545, 10, 0, 65546, 10, 0, 131072, 23, 0, 131081, 25, 0, 131083, 23, 0, 196620, 3, 0, 196621, 1, 0, 262149, 3, 0, 262150, 2, 0, 262151, 1, 0, 262153, 3, 0, 262154, 1, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 1, 0 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 121, 39 )
-current = true
-zoom = Vector2( 0.25, 0.25 )
-
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 14, 72 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2( 107, -33 )
+current = true
+zoom = Vector2( 0.25, 0.25 )
+smoothing_enabled = true
 
 [node name="Coin3" parent="." instance=ExtResource( 10 )]
 position = Vector2( 103, 53 )
@@ -810,30 +812,42 @@ follow_viewport_enable = true
 script = ExtResource( 12 )
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
-margin_left = -7.0
-margin_top = -36.0
-margin_right = 36.0
-margin_bottom = -19.0
+margin_left = 11.0
+margin_top = 9.0
+margin_right = 54.0
+margin_bottom = 26.0
 custom_styles/panel = SubResource( 31 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="TextureRect" type="Sprite" parent="CanvasLayer"]
-position = Vector2( 3, -28 )
+position = Vector2( 21, 17 )
 texture = ExtResource( 11 )
 hframes = 8
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-margin_left = 11.0
-margin_top = -35.0
-margin_right = 51.0
-margin_bottom = -21.0
+margin_left = 29.0
+margin_top = 10.0
+margin_right = 69.0
+margin_bottom = 24.0
 text = ":"
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="CoinCollect" type="Label" parent="CanvasLayer"]
-margin_left = 16.0
-margin_top = -34.0
-margin_right = 56.0
-margin_bottom = -20.0
+margin_left = 34.0
+margin_top = 11.0
+margin_right = 74.0
+margin_bottom = 25.0
 text = "00"
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource( 13 )
@@ -841,5 +855,8 @@ script = ExtResource( 13 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 116, 148 )
 shape = SubResource( 32 )
+
+[node name="Saw" parent="." instance=ExtResource( 8 )]
+position = Vector2( 59, 20 )
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]

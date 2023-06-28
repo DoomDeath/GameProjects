@@ -14,8 +14,8 @@ margin_bottom = -1.0
 script = ExtResource( 4 )
 
 [node name="DesertA" type="Sprite" parent="."]
-position = Vector2( 512.5, 299 )
-scale = Vector2( 3.99609, 4.64063 )
+position = Vector2( 521.5, 299 )
+scale = Vector2( 4.0664, 4.64063 )
 texture = ExtResource( 2 )
 
 [node name="MountainsA" type="Sprite" parent="."]
